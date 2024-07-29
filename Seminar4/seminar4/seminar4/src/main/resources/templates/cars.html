@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <link rel="stylesheet" th:href="@{/carStyle.css}" href="/carStyle.css">
+</head>
+<body>
+    <div class="cars">
+        <h1 class="title">
+            Cars
+        </h1>
+        <h2 class="view-cars">
+            View cars
+        </h2>
+
+        <table>
+            <tr   class="table-columns">
+                <th style="font-size: 14px">CAR <br> NAME</th>
+                <th style="font-size: 14px">CAR <br> PRICE</th>
+            </tr>
+            <tr  class="table-columns" th:each="car: ${cars}">
+                <td ><a th:href="@{/cars/{carMake}(carMake=${car.carMake})}" th:text="${car.carMake}"></a></td>
+                <td th:text="${car.price}"></td>
+            </tr>
+        </table>
+        <h2 class="add">Add a Car</h2>
+        <form action="/cars" method="post" class="form-add">
+            CarMake: <input type="text" name="carMake" class="input">
+            Price <input type="text" name="price" class="input">
+            <button class="button" type="submit"><p class="button-text">Add Car</p></button>
+        </form>
+    </div>
+</body>
+</html>
