@@ -15,7 +15,6 @@ import java.util.List;
 public class NoteSrvice {
     private final NoteRepo noteRepo;
 
-    @TrackUserAction
     public Note createNote(Note note) {return noteRepo.save(note);}
 
     @TrackUserAction
@@ -24,7 +23,6 @@ public class NoteSrvice {
     @TrackUserAction
     public Note getNoteById(Long id){return noteRepo.findById(id).orElseThrow(null);}
 
-    @TrackUserAction
     public Note updateNote(Note note) {
         Note updatedNote = getNoteById(note.getId());
 
@@ -34,7 +32,6 @@ public class NoteSrvice {
         return updatedNote;
     }
 
-    @TrackUserAction
     public void deleteNote(Long id) {
         noteRepo.delete(getNoteById(id));
     }
