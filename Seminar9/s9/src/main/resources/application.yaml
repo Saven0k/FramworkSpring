@@ -1,0 +1,22 @@
+server:
+  port: 8765
+
+spring:
+  application:
+    name: Api GetAway
+
+  cloud:
+    gateway:
+      routes:
+        - id: Product
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/product/**
+        - id: Reviews
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/reviews/**
+        - id: Cart
+          uri: http://localhost:8083/
+          predicates:
+            - Path=/cart/**
