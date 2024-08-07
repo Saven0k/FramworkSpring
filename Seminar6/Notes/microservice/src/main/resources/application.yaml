@@ -1,0 +1,10 @@
+
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: metrics, prometheus, mappings,beans,startup,env,scheduledtasks,caches, health
