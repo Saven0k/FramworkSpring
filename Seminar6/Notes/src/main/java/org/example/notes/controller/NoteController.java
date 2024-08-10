@@ -2,6 +2,7 @@ package org.example.notes.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.notes.model.Note;
+import org.example.notes.service.FileGateWay;
 import org.example.notes.service.NoteSrvice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import java.util.List;
 @RequestMapping("/notes")
 public class NoteController {
     private final NoteSrvice noteSrvice;
+    private final FileGateWay fileGateWay;
+
 
     @GetMapping
     public List<Note> getAllNotes(){return noteSrvice.getAllNotes();}
@@ -22,6 +25,7 @@ public class NoteController {
     @PostMapping
     public Note createNote(Note note){
         note.setCreationDate(LocalDateTime.now());
+        fileGateWay.writeToFile(note.getTitle() + ".txt", note.toString());
         return noteSrvice.createNote(note);
     }
 
